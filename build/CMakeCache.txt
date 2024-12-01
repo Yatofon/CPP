@@ -195,7 +195,7 @@ example_BINARY_DIR:STATIC=C:/Users/Yatofon/Desktop/CPP/build
 example_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-example_SOURCE_DIR:STATIC=C:/Users/Yatofon/Desktop/CPP/CProject
+example_SOURCE_DIR:STATIC=C:/Users/Yatofon/Desktop/CPP
 
 
 ########################
@@ -266,7 +266,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=x64
 CMAKE_GENERATOR_TOOLSET:INTERNAL=host=x64
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/Yatofon/Desktop/CPP/CProject
+CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/Yatofon/Desktop/CPP
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS

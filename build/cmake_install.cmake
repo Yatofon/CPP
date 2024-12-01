@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Yatofon/Desktop/CPP/CProject
+# Install script for directory: C:/Users/Yatofon/Desktop/CPP
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
