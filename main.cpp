@@ -29,4 +29,5 @@ int main(void)
 { 
     int** A = create_array(2);
     print_array(A, 2);
+    delete[] A;
 }
