@@ -10,5 +10,5 @@ int main(void)
     unsigned long long x, i; 
     cout << "Введите x, затем i" << endl; 
     cin >> x >> i; 
-    cout << (( x & ( 1 << ( i - 1 ) ) ) >> ( i - 1) ); 
+    cout << ( ( x & ( 1 << ( i - 1 ) ) ) >> ( i - 1) ); 
 }
