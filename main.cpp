@@ -13,11 +13,12 @@ void Task_1()
     else if (b % c == 0) cout <<b / c - b; 
     else cout << a * b - c; 
 }
+
 void Task_2()
 {
     int N; 
     cin >> N; 
-    if (N <= 12 && N >= 1) switch(N) 
+    switch(N) 
     { 
         case 1: 
             cout << "January"; break; 
@@ -44,20 +45,21 @@ void Task_2()
         case 12: 
             cout << "December"; break; 
         default: 
-            break; 
+            cout << "Число находится вне рабочего диапазона"; break;
     } 
-    else cout << "Число находится вне рабочего диапазона"; 
 }
+
 void Task_3()
 {
 	short x; 
     cin >> x; 
     if (x == -1) cout << "Negative number"; else cout << "Positive number"; 
 }
+
 int main(void) 
 { 
     Task_1;
-	Task_2;
-	Task_3;
+	//Task_2;
+	//Task_3;
 }
 
