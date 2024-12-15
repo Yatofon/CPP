@@ -8,7 +8,7 @@ using namespace std;
 int main(void) 
 { 
     unsigned long long x, i; 
-    cout << "Введите x, затем i: " << endl;
+    cout << "Введите x, затем i: ";
     cin >> x >> i; 
-    cout << ( ( x & ( 1 << ( i - 1 ) ) ) >> ( i - 1) ); 
+    cout << "\n" <<( ( x & ( 1 << ( i - 1 ) ) ) >> ( i - 1) ); 
 }
