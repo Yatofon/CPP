@@ -14,9 +14,9 @@ void Task_1()
     {  
         cout << "\n Введите " << i + 1 << "й элемент массива: "; 
         cin >> A[i]; 
-        sumn += A[i]; 
         if (abs(A[i]) % 7 == 0 && A[i] < 0) 
         { 
+            sumn += A[i]; 
             if (A[i] > maxn && A[i] < 0)  
             { 
                 maxn = A[i];  
