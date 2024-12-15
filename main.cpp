@@ -58,8 +58,8 @@ void Task_3()
 
 int main(void) 
 { 
-    Task_1;
-	//Task_2;
-	//Task_3;
+    Task_1();
+	//Task_2();
+	//Task_3();
 }
 
