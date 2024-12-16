@@ -4,7 +4,7 @@ using namespace std;
 
 void Task_1()
 {
-  cout << "Task 1\n";
+  cout << "\nTask 1\n";
 	long long maxn = -99999; 
     long sumn = 0; 
     int j, k; 
@@ -35,7 +35,7 @@ void Task_1()
 
 void Task_2()
 {
-  cout << "Task 2\n";
+  cout << "\nTask 2\n";
 	long N; 
     long result = 1; 
     cin >> N; 
