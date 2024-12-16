@@ -7,7 +7,7 @@ using namespace std;
  
 void Task_1()
 {
-  cout << "Task 1\n";
+  cout << "\nTask 1\n";
 	long long a, b, c; 
     cin >> a >> b >> c; 
     if (a < b && b > c) cout << b + a - c; 
@@ -17,7 +17,7 @@ void Task_1()
 
 void Task_2()
 {
-    cout << "Task 2\n";
+    cout << "\nTask 2\n";
     int N; 
     cin >> N; 
     switch(N) 
@@ -53,7 +53,7 @@ void Task_2()
 
 void Task_3()
 {
-    cout << "Task 3\n";
+    cout << "\nTask 3\n";
 	short x; 
     cin >> x; 
     if (x == -1) cout << "Negative number"; else cout << "Positive number"; 
