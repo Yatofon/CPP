@@ -94,7 +94,7 @@ bool is_cube(int x)
 
 void Task_1()
 {
-  cout << "Task 1\n";
+  cout << "\nTask 1\n";
   int n, k;
   k = 0;
   cout << "Введите размер массива: ";
@@ -119,7 +119,7 @@ void Task_1()
 
 void Task_2()
 {
-    cout << "Task 2\n";
+    cout << "\nTask 2\n";
   int n;
 
   cout << "Введите размер массива: ";
@@ -168,7 +168,7 @@ void Task_2()
 
 void Task_3()
 {
-    cout << "Task 3\n";
+    cout << "\nTask 3\n";
     int m, n, k;
     long max_number = -9999999;
     long max_number_helper = 1;
@@ -214,7 +214,7 @@ const int N = 20000;
 
 void Task_4()
 {
-  cout << "Task 4\n";
+  cout << "\nTask 4\n";
   int n;
   cout << "Введите количество элементов: ";
   cin >> n;
