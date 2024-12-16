@@ -5,132 +5,259 @@
  
 using namespace std; 
 
-bool prime_number(long x) { 
- for (int i = 2; i < int(sqrt(x))+1; i++) 
- { 
-  if (x%i==0) 
-  { 
-   return false; 
-  } 
- } 
- return true; 
+void swapp (int& x, int& y)
+{
+  int a = x;
+  x = y;
+  y = a;
+  return;
+}
+
+bool prime_number(long x) 
+{ 
+    for (int i = 2; i < int(sqrt(x))+1; i++) 
+        if (x % i == 0) return false;
+    return true; 
 } 
  
 int* sorting_array(int* A, int n)
 {
+  cout <<"WADAFAQ\n";
+
   for (int i = 0; i < n; i++)
-  {
-    for (int j = i; j < n - i; j++)
+    for (int j = i; j < n; j++)
     {
-      if (A[i] > A[j])
-      {
-        swap(A[i], A[j]);
-      }
+      if (A[i] > A[j]) swapp(A[i], A[j]); 
     }
-  }
   return A;
+}
+
+int sum_of_dig(int x)
+{
+  int s = 0;
+  while (x > 0)
+  {
+    s += (x % 10);
+    x = x / 10;
+  }
+  return s;
+}
+
+int mul_of_dig(int x)
+{
+  int m = 1;
+  while (x > 0)
+  {
+    m *= (x % 10);
+    x = x / 10;
+  }
+  return m;
 }
 
 int* sorting_array_sum_of_dig(int* A, int n)
 {
   for (int i = 0; i < n; i++)
   {
-    for (int j = i; j < n - i; j++)
+    for (int j = i; j < n; j++)
     {
-      if (A[i] > A[j])
-      {
-        swap(A[i], A[j]);
-      }
+      if (sum_of_dig(A[i]) > sum_of_dig(A[j])) swapp(A[i], A[j]);
     }
   }
   return A;
 }
 
-void Task_1()
+void move_el(int* A, int n, int i)
 {
-  int n;
-  cout << "Введите размер массива: ";
-  cin >> n;
-  int* A = new int[n];
-  for (int i = 0; i < n; i++)
+  int a;
+  for (int j = i - 1; j < n - 1; j++)
   {
-    cout << "\nВведите " << i + 1 << "-й элемент массива: ";
-    cin >> A[i];
+    a = A[j + 1];
+    A[j + 1] = A[i];
+    A[i] = a;
   }
-  int k = 0;
-  for (int i = 0; i < n; i++)
+  A[n] = A[i];
+  A[i] = A[i + 1];
+  return;
+}
+
+bool is_cube(int x)
+{
+  for (int i = 0; i < sqrt(x) + 1; i++)
   {
-    if (prime_number(A[i]))
+    if (x == i * i * i) 
     {
-      k += 1;
-      break;
+      return true;
     }
   }
-  if (k == 0)
+  return false;
+}
+
+void Task_1()
+{
+  cout << "Task 1\n";
+  int n, k;
+  k = 0;
+  cout << "Введите размер массива: ";
+  cin >> n;
+
+  int* A = new int[n];
+
+  for (int i = 0; i < n; i++)
   {
-    cout << sorting_array(A, n);
+    cout << "\nВведите эдемент массива: ";
+    cin >> A[i];
+    if (prime_number(A[i])) k++;
   }
-  else
+  if (k > 0) for (int i = 0; i < n; i++) cout << A[i] << "    ";
+  else 
   {
-    cout << A;
+    sorting_array(A, n);
+    for (int i = 0; i < n; i++) cout << A[i] << "   ";
   }
   delete[] A;
 }
 
 void Task_2()
 {
+    cout << "Task 2\n";
   int n;
+
   cout << "Введите размер массива: ";
   cin >> n;
-  int* A = new int[n];
 
+  int* A = new int[n];
+  for (int i = 0; i < n; i++)
+  {
+    cout << "\nВведите элемент массива: ";
+    cin >> A[i];
+  }
+
+  sorting_array_sum_of_dig(A, n);
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = i; j < i + 2; j++)
+    {
+      if (sum_of_dig(A[i]) == sum_of_dig(A[j]))
+      {
+        if (mul_of_dig(A[i]) > mul_of_dig(A[j])) swapp(A[i], A[j]);
+      }
+    }
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = i; j < i + 2; j++)
+    {
+      if (sum_of_dig(A[i]) == sum_of_dig(A[j]))
+      {
+        if (mul_of_dig(A[i]) == mul_of_dig(A[j]))
+        {
+          if (A[i] > A[j]) swapp(A[i], A[j]);
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    cout << A[i] << "\t";
+  }
+  delete[] A;
 }
 
 void Task_3()
 {
-  int m, n, mxl;
-  long max_number;
-  cout << "Введите размеры матрицы (m, n): ";
-  cin >> m >> n;
+    cout << "Task 3\n";
+    int m, n, k;
+    long max_number = -9999999;
+    long max_number_helper = 1;
 
-  int* A = new int[m];
-  int* B = new int[m];
-  int* C = new int[n];
-  mxl = 1;
+    cout << "Введите количество строк, затем столбцов: ";
+    cin >> n >> m;
+    int** A = new int*[n];
 
-  for (int i = 0; i < m; i++)
+    for (int i = 0; i < n; i++)
+    {
+        A[i] = new int[m];
+        for (int j = 0; j < m; j++)
+        {
+            cout << "\nВведите элемент матрицы: ";
+            cin >> A[i][j];
+            max_number_helper *= A[i][j];
+        }
+        if (max_number_helper > max_number) 
+        {
+            max_number = max_number_helper;
+            k = i;
+        }
+        max_number_helper = 1;
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        A[k][i] = max_number;
+    }
+    cout << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << A[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+  delete[] A;
+}
+
+const int N = 20000;
+
+void Task_4()
+{
+  cout << "Task 4\n";
+  int n;
+  cout << "Введите количество элементов: ";
+  cin >> n;
+  int A[N];
+  for (int i = 0; i < N; i++)
   {
-    B[i] = 1;
+    A[i] = 0;
+  }
+  
+
+  for (int i = 0; i < n; i++)
+  {
+    cout << "\nВведите элемент массива: ";
+    cin >> A[i];
   }
 
-  for (int i = 0; i < m; i++)
+  for (int i = 0; i < n; i++)
+    if (prime_number(A[i])) A[i] = 0;
+  
+  for (int i = 0; i < n; i++)
   {
-    for (int j = 0; j < n; j++)
+    if (is_cube(A[i]) && A[i] != 0)
     {
-      cin >> A[j][i];
-      B[i] *= A[j][i];
-    }
-    if (i > 0 && B[i] > B[i-1])
-    {
-      mxl = i;
-      max_number = B[i];
-    }
+      move_el(A, n, i);
+      A[i + 1] = A[i];
+      i++;
+      n++;
+    } 
+    
   }
-  for (int i = 0; i < m; i++)
+  
+
+  for (int i = 0; i < n; i++)
   {
-    A[i][mxl] = max_number;
+    cout << A[i] << "\t";
   }
-  for (int i = 0; i < m; i++)
-  {
-    cout <<"\n";
-    for (int j = 0; j < n; i++)
-    {
-      cout << A[j][i] << "  ";
-    }
-  }
+  
 }
 
 int main(void) 
 { 
-  Task_3;
+  Task_1();
+  Task_2();
+  Task_3();
+  Task_4();
 }
