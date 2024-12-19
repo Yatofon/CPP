@@ -4,6 +4,9 @@ using namespace std;
 
 int main()
 {
-	cout << "Hello, 1 FIIT and 1 MO!" << endl;
+    int a = 4;
+
+    cout << ((a > 3)? ("\nrty") :( "\nqwe"));
+
 	return 0;
 }
