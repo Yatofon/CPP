@@ -8,6 +8,16 @@ struct Node
 	int info;
 	Node * next;
 	Node * prev;
+};
+
+void addFront(Node* top, int info)
+{
+	Node* a = new Node;
+	a->info = info;
+	a->next = top->next;
+	a->prev = top;
+	top->next->prev = a;
+	top->next = a;
 }
 
 void print_list(Node * top)
@@ -15,7 +25,7 @@ void print_list(Node * top)
 	Node * p = top->next;
 	while (p != top)
 	{
-		cout << p.>info << " ";
+		cout << p->info << " ";
 		p = p->next;
 	}
 	
@@ -51,7 +61,7 @@ void remove_numbers(Node * &top)
 	Node * p = top;
 	while (p != top)
 	{
-		if (temp->info % 4 == 0)
+		if (p->info % 4 == 0)
 		{
 			p->prev->next = p->next;
 			p->next->prev = p->prev;
@@ -77,7 +87,7 @@ void sort_list(Node * top)
 
 bool is_list_sorted(Node * top)
 {
-	Node * p = top
+	Node * p = top;
 
 	while (p->next != top)
 	{
@@ -89,9 +99,26 @@ bool is_list_sorted(Node * top)
 	return true;
 }
 
-int main()
+
+
+void main()
 {
+	Node* node = new Node;
+	node->next = node;
+	node->prev = node;
+
+	int n;
+	cout << "Enter number of elemenrs: " << "\n";
+	cin >> n;
+
+	for (int i = 0; i < n; i++)
+	{
+		int number;
+		cout << "Enter number: " << "\n";
+		cin >> number;
+		addFront(node, number);
+	}
 	
-	return 0;
+	print_list(node);
 }
 
