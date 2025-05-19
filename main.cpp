@@ -22,52 +22,38 @@ void addFront(Node* top, int info)
 
 void print_list(Node * top)
 {
-	Node * p = top->next;
+	Node * p = top->prev;
 	while (p != top)
 	{
 		cout << p->info << " ";
-		p = p->next;
+		p = p->prev;
 	}
-	
+	cout << "\n";
 }
 
-void duplicate_numbers(Node* top)
+void duplicate_numbers(Node* node)
 {
-	Node* a = new Node;
-	a->info = top->info;
-	a->prev = top->prev;
-	a->next = top;
-	top->prev->next = a;
-	top->prev = a;
+	Node* newNode = new Node;
+    newNode->info = node->info;
+    newNode->next = node->next;
+    newNode->prev = node;
+    node->next->prev = newNode;
+    node->next = newNode;
 }
 
-void remove_numbers(Node * toRemove)
+void remove_numbers(Node* top)
 {
-	toRemove->prev->next = toRemove->next;
-    toRemove->next->prev = toRemove->prev;
+	top->prev->next = top->next;
+	top->next->prev = top->prev;
 
-    delete toRemove;
+	delete(top);
 }
 
 void sort_list(Node * top)
 {
 	for (Node * a = top->next; a->next != top; a = a->next)
 		for (Node * b = a->next; b != top; b = b->next)
-			if (a->info < b->info) swap(a->info, b->info);
-}
-
-bool is_list_sorted(Node * top)
-{
-	Node * p = top;
-
-	while (p->next != top)
-	{
-		if (p->info > p->next->info)
-			return false;
-		else
-			p = p->next;
-	}
-	return true;
+			if (a->info > b->info) swap(a->info, b->info);
 }
 
 bool isPrime(int k)
@@ -83,19 +69,19 @@ bool isPrime(int k)
 
 int checkEvenOdd(int k)
 {
-	if (k == 0) return true;
+	if (k == 0) return 2;
 
-	bool cond_Even = 1;
-	bool cond_Odd = 1;
+	short cond_Even = 0;
+	short cond_Odd = 0;
 	while (k != 0)
 	{
 		int a = k % 10;
-		if (a % 2 == 0) cond_Odd = 0;
-		else cond_Even = 0;
+		if (a % 2 == 0) cond_Even += 1;
+		else cond_Odd += 1;
 		k = k / 10;
 	}
-	if (cond_Even == 1 && cond_Odd == 0) return 1;
-	else if (cond_Even == 0 && cond_Odd == 1) return 2;
+	if (cond_Even >= 1 && cond_Odd == 0) return 1;
+	else if (cond_Even == 0 && cond_Odd >= 1) return 2;
 	else return 0;
 }
 
@@ -132,24 +118,27 @@ void main()
 		p = p->next;
 	}
 	
-	if (anyPrime == 1)	sort_list(node);
-
-	p = node->next;
-	while (p != node)
+	if (anyPrime == 1)	
+		sort_list(node);
+	else
 	{
-		switch (checkEvenOdd(p->info))
+		p = node->next;
+		while (p != node)
 		{
-		case 1:
-			duplicate_numbers(p);
-			break;
-		case 2:
-			remove_numbers(p);
-			break;
-		
-		default:
-			break;
+			Node* p1 = p;
+			p = p->next;
+			switch (checkEvenOdd(p1->info))
+			{
+			case 1:
+				duplicate_numbers(p1);
+				break;
+			case 2:
+				remove_numbers(p1);
+				break;
+			default:
+				break;
+			}
 		}
-		p = p->next;
 	}
 	print_list(node);
 }
