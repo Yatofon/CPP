@@ -88,6 +88,7 @@ int checkEvenOdd(int k)
 
 void main()
 {
+			//Инициализация и заполнение
 	Node* node = new Node;
 	node->next = node;
 	node->prev = node;
@@ -104,9 +105,10 @@ void main()
 		addFront(node, number);
 	}
 	
+			//Проверка на наличие простых чисел
 	Node* p = node;
 	p = p->next;
-	bool anyPrime = 0; //0 - false
+	bool anyPrime = 0; 
 	
 	while (p != node)
 	{
@@ -118,6 +120,7 @@ void main()
 		p = p->next;
 	}
 	
+			//Обработка списка
 	if (anyPrime == 1)	
 		sort_list(node);
 	else
@@ -142,4 +145,3 @@ void main()
 	}
 	print_list(node);
 }
-
